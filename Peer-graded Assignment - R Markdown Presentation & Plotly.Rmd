@@ -1,0 +1,92 @@
+---
+title: "Peer-graded Assignment - R Markdown Presentation & Plotly"
+author: "Choo Che Yon"
+date: "March 4, 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(plotly)
+```
+
+```{r data, echo=FALSE}
+# Define data
+data <- data.frame(
+    Date = c(
+        '2016-2-6',
+        '2016-2-7',
+        '2016-2-8',
+        '2016-2-9',
+        '2016-2-10',
+        '2016-2-13',
+        '2016-2-14',
+        '2016-2-15',
+        '2016-2-16',
+        '2016-2-17',
+        '2016-2-21',
+        '2016-2-22',
+        '2016-2-23',
+        '2016-2-24',
+        '2016-2-27',
+        '2016-2-28',
+        '2016-3-1',
+        '2016-3-2',
+        '2016-3-3'
+    ),
+    Price = c(
+        177.94,
+        182.96,
+        185.18,
+        185.90,
+        186.37,
+        183.80,
+        184.91,
+        185.94,
+        186.10,
+        187.93,
+        188.92,
+        183.00,
+        186.30,
+        186.28,
+        185.42,
+        189.91,
+        187.45,
+        189.37,
+        189.04
+    )
+)
+
+# Convert the date string to date format
+data$Date <- as.Date(data$Date, "%Y-%m-%d")
+```
+
+## Domino's Pizza Stock Price<br/><span style="font-size:smaller">[4th Feb 2017 - 3rd Mar 2017]</span>
+
+```{r plotly, echo=FALSE, warning=FALSE}
+f <- list(
+  size = 18,
+  color = "#7f7f7f"
+)
+x <- list(
+  title = "Date",
+  titlefont = f
+)
+y <- list(
+  title = "Price (USD)",
+  titlefont = f
+)
+plot_ly(
+    x = ~data$Date, 
+    y = ~data$Price, 
+    type = "scatter", 
+    mode = "lines"
+    ) %>%
+  layout(xaxis = x, yaxis = y)
+```
+
+<span style="font-size:small">
+Data taken from *[here](https://www.google.com/search?q=domino+stock+price&oq=domino+stock+price&aqs=chrome..69i57.3271j0j4&sourceid=chrome&ie=UTF-8)* on 4th March 2017.
+</span>
+
+# Thank You
